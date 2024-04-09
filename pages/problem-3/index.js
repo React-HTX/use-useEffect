@@ -101,7 +101,7 @@ function MovieList() {
         <ul className="grid grid-cols-3 gap-x-12 gap-y-2">
           {movies.map((movie) => (
             <li key={movie.id} className="mb-6">
-              <Link href={`/solution-3/${movie.id}`} passHref>
+              <Link href={`/problem-3/${movie.id}`} passHref>
                 <div className="">
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

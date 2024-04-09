@@ -31,20 +31,22 @@ function MovieList() {
     fetchMoviesAndGenres();
   }, []); // Note: Empty dependency array indicates this effect runs only once on component mount
 
-  useEffect(() => {
-    const fetchMoviesByGenre = async () => {
-      if (selectedGenre === "all") {
-        const trendingMovies = await getTrendingMovies();
-        setMovies(trendingMovies);
-        return;
-      }
+  // While the following API call does work, it's better to use useEffect to fetch data because it's a side effect and should be done after the component is mounted. Also, this function should only run when the selected genre changes.
 
-      const moviesByGenre = await getMoviesByGenre(selectedGenre);
-      setMovies(moviesByGenre);
-    };
+  /* **********
+  const fetchMoviesByGenre = async () => {
+    if (selectedGenre === "all") {
+      const trendingMovies = await getTrendingMovies();
+      setMovies(trendingMovies);
+      return;
+    }
 
-    fetchMoviesByGenre();
-  }, [selectedGenre]); // Note: selectedGenre is a dependency of this effect
+    const moviesByGenre = await getMoviesByGenre(selectedGenre);
+    setMovies(moviesByGenre);
+  };
+
+  fetchMoviesByGenre();
+  ********** */
 
   // useEffect to filter movies based on genre
   if (isLoading) {

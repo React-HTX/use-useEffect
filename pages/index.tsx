@@ -9,11 +9,11 @@ export default function Home() {
     >
       <div className="mb-32 flex flex-col justify-center items-center text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:text-left">
         <a
-          href="/solution-1"
+          href="/problem-1"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Solution 1{" "}
+            Problem 1{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -24,11 +24,11 @@ export default function Home() {
         </a>
 
         <a
-          href="/solution-2"
+          href="/problem-2"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Solution 2{" "}
+            Problem 2{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -39,11 +39,11 @@ export default function Home() {
         </a>
 
         <a
-          href="/solution-3"
+          href="/problem-3"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Solution 3{" "}
+            Problem 3{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>

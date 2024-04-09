@@ -28,8 +28,9 @@ function MoviePage() {
     fetchMovie();
   }, [id]); // This effect runs whenever `id` changes
 
-  // useEffect to update document title based on movie data
-  useEffect(() => {
+  // While the code below works, it's better to use useEffect to update the document title when the movie state changes. This way, the title will be updated when the movie details are fetched.
+
+  /* **********
     if (movie) {
       document.title = `${movie.title} - Movie Details`; // Dynamically update the document title with the movie's title
     }
@@ -38,7 +39,7 @@ function MoviePage() {
     return () => {
       document.title = "Original Title Here"; // Reset to your site's default title or another appropriate title
     };
-  }, [movie]); // This effect depends on the `movie` state
+  ********** */
 
   if (isLoading) {
     return <div className="text-center">Loading movie details...</div>;
@@ -50,7 +51,7 @@ function MoviePage() {
 
   return (
     <div className="container max-w-5xl mx-auto p-4">
-      <Link className="text-blue-500" href="/solution-3">
+      <Link className="text-blue-500" href="/problem-3">
         Back to movies
       </Link>
       <div className="flex justify-start gap-6 items-start">
