@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { getTrendingMovies } from "../utils/request";
 
 function MovieList() {
@@ -6,7 +7,7 @@ function MovieList() {
   const [movies, setMovies] = useState([]);
   console.log("movies:", movies);
 
-  // fetch movies and genres
+  // useEffect to fetch movies when the component mounts
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -20,19 +21,28 @@ function MovieList() {
     };
 
     fetchMovies();
-  }, []);
+  }, []); // This effect runs only once when the component mounts
 
+  // Render loading state if movies are still loading
   if (isLoading) {
     return <div className="text-center">Loading movies...</div>;
   }
 
+  // Render message if no movies are found
   if (!movies || movies.length === 0) {
     return <div className="text-center">No movies found.</div>;
   }
 
   return (
     <div className="container max-w-7xl mx-auto px-4">
-      <h1 className="text-2xl font-bold my-4">Movie List</h1>
+      <div className="flex justify-between pt-10 pb-4">
+        <div>
+          <h1 className="text-4xl font-bold">Movie List</h1>
+          <Link className="text-blue-500" href="/">
+            Back to Home
+          </Link>
+        </div>
+      </div>
       <ul className="grid grid-cols-3 gap-12">
         {movies.map((movie) => (
           <li key={movie.id} className="mb-6">

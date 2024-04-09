@@ -4,13 +4,13 @@ import {
   getTrendingMovies,
   getGenres,
   getMoviesByGenre,
-} from "../../utils/request";
+} from "../utils/request";
 
 function MovieList() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState("all");
-  const [selectedGenre, setSelectedGenre] = useState("all");
+  const [isLoading, setIsLoading] = useState(true); // Note: Loading state used to indicate if data is being fetched
+  const [movies, setMovies] = useState([]); // Note: State holding the fetched movies
+  const [genres, setGenres] = useState("all"); // Note: State holding movie genres
+  const [selectedGenre, setSelectedGenre] = useState("all"); // Note: State holding the currently selected genre
 
   // fetch movies and genres
   useEffect(() => {
@@ -29,7 +29,7 @@ function MovieList() {
     };
 
     fetchMoviesAndGenres();
-  }, []);
+  }, []); // Note: Empty dependency array indicates this effect runs only once on component mount
 
   useEffect(() => {
     const fetchMoviesByGenre = async () => {
@@ -44,7 +44,7 @@ function MovieList() {
     };
 
     fetchMoviesByGenre();
-  }, [selectedGenre]);
+  }, [selectedGenre]); // Note: selectedGenre is a dependency of this effect
 
   // useEffect to filter movies based on genre
   if (isLoading) {
@@ -62,9 +62,14 @@ function MovieList() {
 
   return (
     <div className="container max-w-7xl mx-auto px-4">
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold my-4">Movie List</h1>
-        <div className="mb-4">
+      <div className="flex justify-between pt-10 pb-4">
+        <div>
+          <h1 className="text-4xl font-bold">Movie List</h1>
+          <Link className="text-blue-500" href="/">
+            Back to Home
+          </Link>
+        </div>
+        <div>
           <label
             htmlFor="genre-select"
             className="block mb-2 text-sm font-medium text-white"
@@ -89,21 +94,19 @@ function MovieList() {
       <ul className="grid grid-cols-3 gap-x-12 gap-y-2">
         {movies.map((movie) => (
           <li key={movie.id} className="mb-6">
-            <Link href={`/dom-manipulation/${movie.id}`} passHref>
-              <div className="">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                  className="mt-2 rounded-xl shadow-lg"
-                />
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold">{movie.title}</h2>
-                  <p className="truncate overflow-hidden whitespace-nowrap">
-                    {movie.overview}
-                  </p>
-                </div>
+            <div className="">
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
+                className="mt-2 rounded-xl shadow-lg"
+              />
+              <div className="p-6">
+                <h2 className="text-xl font-semibold">{movie.title}</h2>
+                <p className="truncate overflow-hidden whitespace-nowrap">
+                  {movie.overview}
+                </p>
               </div>
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

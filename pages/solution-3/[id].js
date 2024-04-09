@@ -6,10 +6,11 @@ import { getMovieDetails } from "../../utils/request";
 
 function MoviePage() {
   const router = useRouter();
-  const { id } = router.query;
-  const [movie, setMovie] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { id } = router.query; // Note: Destructuring router.query to get the 'id' parameter
+  const [movie, setMovie] = useState(null); // Note: State to hold movie details
+  const [isLoading, setIsLoading] = useState(true); // Note: Loading state
 
+  // useEffect to fetch movie details when 'id' changes
   useEffect(() => {
     const fetchMovie = async () => {
       if (!id) return; // Exit early if id is not yet available
@@ -25,9 +26,9 @@ function MoviePage() {
     };
 
     fetchMovie();
-  }, [id]);
+  }, [id]); // This effect runs whenever `id` changes
 
-  // useEffect for DOM manipulation
+  // useEffect to update document title based on movie data
   useEffect(() => {
     if (movie) {
       document.title = `${movie.title} - Movie Details`; // Dynamically update the document title with the movie's title
@@ -49,7 +50,7 @@ function MoviePage() {
 
   return (
     <div className="container max-w-5xl mx-auto p-4">
-      <Link className="text-blue-500" href="/dom-manipulation">
+      <Link className="text-blue-500" href="/solution-3">
         Back to movies
       </Link>
       <div className="flex justify-start gap-6 items-start">
