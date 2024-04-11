@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.movie-view-active {
+  @apply bg-gray-100;
+}
