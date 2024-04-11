@@ -5,7 +5,6 @@ import { getTrendingMovies } from "../utils/request";
 function MovieList() {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   const [movies, setMovies] = useState([]);
-  console.log("movies:", movies);
 
   // useEffect to fetch movies when the component mounts
   useEffect(() => {
