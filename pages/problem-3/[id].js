@@ -31,6 +31,7 @@ function MoviePage() {
   }, [id]);
 
   // While this code works, hit the back button in the browser and see what happens. This is what happens when you don't add a cleanup function.
+
   useEffect(() => {
     document.body.classList.add("movie-view-active");
   }, []);

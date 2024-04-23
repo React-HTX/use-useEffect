@@ -8,20 +8,20 @@ function MovieList() {
 
   // While the following API call does work, it's better to use useEffect to fetch data because it's a side effect and should be done after the component is mounted. This way, you can also use the loading state to show a loading message while the data is being fetched.
 
-  /* **********
-  const fetchMovies = async () => {
-    try {
-      const trendingMovies = await getTrendingMovies();
-      setMovies(trendingMovies);
-      setIsLoading(false); // Move loading state update here after movies are fetched
-    } catch (error) {
-      console.error("Failed to fetch trending movies:", error);
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const trendingMovies = await getTrendingMovies();
+        setMovies(trendingMovies);
+        setIsLoading(false); // Move loading state update here after movies are fetched
+      } catch (error) {
+        console.error("Failed to fetch trending movies:", error);
+        setIsLoading(false);
+      }
+    };
 
-  fetchMovies();
-  ********** */
+    fetchMovies();
+  }, []);
 
   // Render loading state if movies are still loading
   if (isLoading) {

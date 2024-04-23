@@ -11,6 +11,7 @@ function MovieList() {
   const [movies, setMovies] = useState([]); // Note: State holding the fetched movies
   const [genres, setGenres] = useState("all"); // Note: State holding movie genres
   const [selectedGenre, setSelectedGenre] = useState("all"); // Note: State holding the currently selected genre
+  const [title, setTitle] = useState("Trending Movies");
 
   // fetch movies and genres
   useEffect(() => {
@@ -33,20 +34,22 @@ function MovieList() {
 
   // While the following API call does work, it's better to use useEffect to fetch data because it's a side effect and should be done after the component is mounted. Also, this function should only run when the selected genre changes.
 
-  /* **********
-  const fetchMoviesByGenre = async () => {
-    if (selectedGenre === "all") {
-      const trendingMovies = await getTrendingMovies();
-      setMovies(trendingMovies);
-      return;
-    }
+  useEffect(() => {
+    const fetchMoviesByGenre = async () => {
+      if (selectedGenre === "all") {
+        const trendingMovies = await getTrendingMovies();
+        setMovies(trendingMovies);
+        setTitle("Trending Movies");
+        return;
+      }
+      const moviesByGenre = await getMoviesByGenre(selectedGenre);
+      const genreName = genres.find((g) => g.id == selectedGenre).name;
+      setTitle(`Trending ${genreName} Movies`);
+      setMovies(moviesByGenre);
+    };
 
-    const moviesByGenre = await getMoviesByGenre(selectedGenre);
-    setMovies(moviesByGenre);
-  };
-
-  fetchMoviesByGenre();
-  ********** */
+    fetchMoviesByGenre();
+  }, [selectedGenre]);
 
   // useEffect to filter movies based on genre
   if (isLoading) {
@@ -66,7 +69,7 @@ function MovieList() {
     <div className="container max-w-7xl mx-auto px-4">
       <div className="flex justify-between pt-10 pb-4">
         <div>
-          <h1 className="text-4xl font-bold">Movie List</h1>
+          <h1 className="text-4xl font-bold">{title}</h1>
           <Link className="text-blue-500" href="/">
             Back to Home
           </Link>
